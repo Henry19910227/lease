@@ -1,4 +1,4 @@
-package com.henry.lease.web.admin.custom.config;
+package com.atguigu.lease.web.admin.custom.config;
 
 
 import io.swagger.v3.oas.models.OpenAPI;

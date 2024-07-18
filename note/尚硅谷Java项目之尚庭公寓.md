@@ -472,7 +472,7 @@ public class MybatisPlusConfiguration {
 
 **2. 配置类**
 
-后台管理系统和移动端的接口配置并不相同，所以需各自编写一个配置类。在**web-admin模块**下创建`com.atguigu.lease.web.admin.custom.config.Knife4jConfiguration`类，内容如下：
+后台管理系统和移动端的接口配置并不相同，所以需各自编写一个配置类。在**web-admin模块**下创建`config.custom.admin.web.com.atguigu.lease.Knife4jConfiguration`类，内容如下：
 
 ```java
 @Configuration
