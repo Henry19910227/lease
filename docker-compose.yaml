@@ -1,0 +1,26 @@
+version: "2.4"
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: lease-mysql
+    volumes:
+      - "./volumes/mysql:/docker-entrypoint-initdb.d"
+    ports:
+      - "3306:3306"
+    networks:
+      - lease-network
+    environment:
+      - MYSQL_DATABASE=lease
+      - MYSQL_ROOT_PASSWORD=aaaa8027
+      - MYSQL_USER=henry
+      - MYSQL_PASSWORD=aaaa8027
+  redis:
+      image: redis:7.0.1
+      ports:
+        - "6379:6379"
+      networks:
+        - lease-network
+      container_name: lease-redis
+networks:
+  lease-network:
+    driver: bridge
