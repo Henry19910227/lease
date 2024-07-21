@@ -3,5 +3,36 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.atguigu.lease.web.admin.mapper.AttrKeyMapper">
-
+    
+    <resultMap id="AttrKeyVo" type="com.atguigu.lease.web.admin.vo.attr.AttrKeyVo">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+        <collection property="attrValueList" ofType="com.atguigu.lease.model.entity.AttrValue">
+            <id property="id" column="attr_value_id"/>
+            <result property="name" column="attr_value_name"/>
+            <result property="createTime" column="attr_value_create_time"/>
+            <result property="updateTime" column="attr_value_update_time"/>
+            <result property="attrKeyId" column="attr_key_id"/>
+        </collection>
+    </resultMap>
+    
+    <select id="listAttrInfo" resultMap="AttrKeyVo">
+        SELECT
+            ak.id,
+            ak.name,
+            ak.create_time,
+            ak.update_time,
+            av.id AS attr_value_id,
+            av.name AS attr_value_name,
+            av.create_time AS attr_value_create_time,
+            av.update_time AS attr_value_update_time,
+            av.attr_key_id
+        FROM attr_key AS ak
+        LEFT JOIN lease.attr_value AS av on
+                    ak.id = av.attr_key_id AND
+                    av.is_deleted = 0
+        WHERE ak.is_deleted = 0
+    </select>
 </mapper>
