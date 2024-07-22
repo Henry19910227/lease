@@ -21,6 +21,17 @@ services:
       networks:
         - lease-network
       container_name: lease-redis
+  minio:
+    image: quay.io/minio/minio
+    container_name: minio
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      MINIO_ROOT_USER: root
+      MINIO_ROOT_PASSWORD: aaaa8027
+    command: server /data --console-address ":9001"
+
 networks:
   lease-network:
     driver: bridge
